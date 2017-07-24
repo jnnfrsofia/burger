@@ -1,4 +1,4 @@
-# Eat Da Burger!
+# Eat-Da-Burger!
 A burger eating application that uses Node.js/Express/MySQL/Handlebars/Materialize.
 
 ## Overview
