@@ -1,11 +1,11 @@
 //requires the connection
-var connection = require('.connection.js');
+var connection = require('./connection.js');
 
 // helper function for generating MySQL syntax
 function printQuestionMarks(num) {
     var arr = [];
 
-    for (var i = 0; i < num; i++) {
+    for (var i = 0; i < num.length; i++) {
         arr.push("?");
     }
 
@@ -28,7 +28,7 @@ var orm = {
     //function that returns all rows from table
     findAll: function(tableInput, callBack) {
         // construct the query string that returns all rows from the target table
-        var queryString = 'SELECT * FROM ' + tableInput;
+        var queryString = 'SELECT * FROM ' + tableInput + ';';
         //database query function
         connection.query(queryString, function(err, result) {
             if (err) throw err;
@@ -39,15 +39,15 @@ var orm = {
     //function that creates a new table row
     createNew: function(table, cols, vals, callBack) {
         //constructs the query string that inserts the new table row
-        var queryString = 'INSERT INTO' + table;
-        queryString += " (";
+        var queryString = 'INSERT INTO ' + table;
+        queryString += ' (';
         queryString += cols.toString();
-        queryString += ") ";
-        queryString += "VALUES (";
+        queryString += ') ';
+        queryString += 'VALUES (';
         queryString += printQuestionMarks(vals.length);
         queryString += ") ";
         //database query function
-        connection.query(queryString, function(err, result) {
+        connection.query(queryString, vals, function(err, result) {
             if (err) throw err;
             //returns the callback result
             callBack(result);
@@ -57,10 +57,10 @@ var orm = {
     //function that updates an existing table row
     updateTable: function(table, objColVals, condition, callBack) {
         //constructs the query string that updates a single table row
-        var queryString = 'UPDATE' + table;
-        queryString += " SET ";
+        var queryString = 'UPDATE ' + table;
+        queryString += 'SET ';
         queryString += objToSql(objColVals);
-        queryString += " WHERE ";
+        queryString += 'WHERE ';
         queryString += condition;
 
 
