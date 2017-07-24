@@ -17,7 +17,7 @@ To run the application locally, clone this repository using the below command.
 
 	git clone https://github.com/jnnfrsofia/burger.git
 	
-After cloning the repo, install the NPMs to your rep folder.
+After cloning the repo, install the NPMs to your repo folder.
 
 	cd burger
 	npm install
